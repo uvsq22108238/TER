@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn import datasets
-from sklearn.neural_network import MLPRegressor
+from sklearn.neural_network import MLPClassifier
 import matplotlib.pyplot as plt
 
 
@@ -22,8 +22,8 @@ diabetes_X_test = diabetes_X[-30:]
 diabetes_y_train = diabetes_y[:-30]
 diabetes_y_test = diabetes_y[-30:]
 
-# Create linear regression object
-model = MLPRegressor(hidden_layer_sizes=(600, 9),
+# Create MLP regression 5 NODES CORRESPONDE TO 17-2 HIDDENLAYERS
+model = MLPRegressor(hidden_layer_sizes=(5,17),
         learning_rate_init= 0.007, max_iter=1000)
 
 # Train the model using the training sets
