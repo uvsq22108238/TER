@@ -1,4 +1,3 @@
-
 from sklearn import datasets
 import numpy as np
 import pandas as pd
@@ -14,7 +13,7 @@ label = data['target']
 data.drop('target', axis=1, inplace=True)
 X_train, X_test, y_train, y_test = train_test_split(data, label, random_state=np.random.randint(1, 10), test_size=0.2)
 
-mlp = MLPClassifier(random_state=1, max_iter=400)
+mlp = MLPClassifier()
 model = mlp.fit(X_train, y_train)
 model.score(X_test, y_test)
 prediction = mlp.predict(X_test)
