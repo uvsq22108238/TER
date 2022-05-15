@@ -23,7 +23,7 @@ diabetes_y_train = diabetes_y[:-30]
 diabetes_y_test = diabetes_y[-30:]
 
 # Create linear regression object
-model = MLPRegressor(hidden_layer_sizes=(600, 19),
+model = MLPRegressor(hidden_layer_sizes= (60,60),
         learning_rate_init= 0.07, max_iter=1000)
 
 # Train the model using the training sets
