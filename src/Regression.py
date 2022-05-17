@@ -12,7 +12,7 @@ diabetes_X = diabetes_X[:, np.newaxis, 2]
 
 # Split the data into training/testing sets
 # Tous sauf les 30 derniers pour le train
-# Les 30 derniers pour le test c'est un choix qui donne un bon score = 0.6454848658857961
+# Les 30 derniers pour le test
 diabetes_X_train = diabetes_X[:-30]
 diabetes_X_test = diabetes_X[-30:]
 
@@ -23,7 +23,7 @@ diabetes_y_train = diabetes_y[:-30]
 diabetes_y_test = diabetes_y[-30:]
 
 # Create linear regression object
-model = MLPRegressor(hidden_layer_sizes= (60,60),
+model = MLPRegressor(hidden_layer_sizes= (150,100),
         learning_rate_init= 0.07, max_iter=1000)
 
 # Train the model using the training sets
