@@ -1,8 +1,10 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
-
-seed=7
 import pandas as pd
+from keras.models import Sequential
+from keras.layers import Dense, Dropout
+from sklearn.metrics import classification_report
+
 
 #charging the dateset result
 #df = pd.read_csv('breastCancer.csv')
@@ -10,7 +12,6 @@ dataframe = pd.read_csv('C:/eRisk2020_T2_TRAINING_DATA/test/breastCancer.csv')
 
 #showing the seven first rows
 dataframe.head(7)
-dataframe.shape
 dataframe.isna().sum()
 dataframe.info()
 dataframe.describe()
@@ -34,6 +35,7 @@ def to_zero_andone(data):
         elif str(val) == "4":
             output_x[idx] = 1
     return data
+
 #define a 2D array
 dataset = np.array(taking_off(dataset))
 
@@ -51,10 +53,6 @@ train_x, validation_x, train_y, validation_y = train_test_split(input_x, output_
 # here i used MLP you may ask why well because its suitable for classification prediction problems
 
 # the Keras library is a model and The simplest model is defined in the Sequentialclass which is a linear stack of Layers
-
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
-from sklearn.metrics import classification_report
 
 layer_1 = 10
 
@@ -74,7 +72,7 @@ model.add(Dense(layer_1, activation=function))
 model.add(Dropout(0.2))
 model.add(Dense(layer_1, activation=function))
 model.add(Dropout(0.2))
-model.add(Dense(1, activation=function))
+model.add(Dense(1, activation='sigmoid'))
 
 # so my model here is defined  now, it needs to be compiled.
 model.compile(loss='binary_crossentropy',
@@ -95,7 +93,6 @@ print('Test accuracy:', score[1])
 
 # now here i tested the 171 samples to see in which class it actually belongs
 target_names = ['class 0', 'class 1']
-
 y_predicted = model.predict(validation_x, batch_size=4, verbose=1)
 i = 0
 for row in y_predicted:
@@ -106,9 +103,13 @@ for row in y_predicted:
         y_predicted[i] = 0
     i += 1
 
+def accuracy(confusion_matrix):
+   diagonal_sum = confusion_matrix.trace()
+   sum_of_all_elements = confusion_matrix.sum()
+   return diagonal_sum / sum_of_all_elements
+
 print(classification_report(validation_y.astype(int), y_predicted.astype(int)))
 # so basically we have 106 none sick person and 65 who are sick
 predict_this = np.array([[1,1,1,1,10,1,1,1,1],[8,10,10,8,7,10,9,7,1]])
 this_is = model.predict(predict_this)
 
-print(this_is)
