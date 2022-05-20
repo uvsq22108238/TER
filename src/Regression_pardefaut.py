@@ -7,8 +7,7 @@ import matplotlib.pyplot as plt
 # Load the diabetes dataset
 diabetes_X, diabetes_y = datasets.load_diabetes(return_X_y=True)
 
-# Use only one feature to predict
-diabetes_X = diabetes_X[:, np.newaxis, 2]
+
 
 # Split the data into training/testing sets
 # Tous sauf les 30 derniers pour le train
@@ -38,6 +37,8 @@ print(diabetes_score)
 #Prediction
 diabetes_predicion = model.predict(diabetes_X_test)
 
+# Use only one feature to print the plot
+diabetes_X = diabetes_X[:, np.newaxis, 2]
 # Plot outputs
 plt.scatter(diabetes_X_test, diabetes_y_test, color="black")
 plt.plot(diabetes_X_test, diabetes_predicion, color="blue")
