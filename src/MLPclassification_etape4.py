@@ -109,7 +109,6 @@ def accuracy(confusion_matrix):
    return diagonal_sum / sum_of_all_elements
 
 print(classification_report(validation_y.astype(int), y_predicted.astype(int)))
-# so basically we have 106 none sick person and 65 who are sick
 predict_this = np.array([[1,1,1,1,10,1,1,1,1],[8,10,10,8,7,10,9,7,1]])
 this_is = model.predict(predict_this)
 
