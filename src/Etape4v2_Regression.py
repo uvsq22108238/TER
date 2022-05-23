@@ -8,7 +8,6 @@ cols_at_end = ['fractal_dimension_worst', 'diagnosis']
 dataframe= dataframe[[c for c in dataframe if c not in cols_at_end]
         + [c for c in cols_at_end if c in dataframe]]
 dataframe.drop('Unnamed: 32', inplace=True, axis=1)
-# i found 16 rows of "?" on the dataset thats why i used this function to fix it
 dataset = dataframe.values
 dataset = dataset.astype(str)
 
@@ -27,7 +26,7 @@ model = MLPRegressor(hidden_layer_sizes=(150, 100, 50),
         learning_rate_init= 0.007, max_iter=1000)
 
 
-# here we uploaded every column but the first "id" (cz we wont be needing it to calculate) and the last "class"
+# here we uploaded every column but the first "id" (cz we wont be needing it to calculate) and the second one
 input_x = dataset[:,1:-1]
 
 output_x = dataset[:, -1]
